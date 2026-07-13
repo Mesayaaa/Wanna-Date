@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanna Date?</title>
+  <link rel="icon" type="image/png" href="src\assets\front-stk.webp">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="src/stylesheet" />
+  <link rel="stylesheet" href="src/style.css" />
+
+</head>
+
+<body>
+  <style>
+    body {
+      background-image: url("src/assets/bg.png");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .front {
+      background-image: url("src/assets/front-bg.png");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100%;
+
+    }
+
+    @media only screen and (max-width: 768px) {
+      body {
+        background-attachment: scroll;
+        background-position: center;
+        background-size: cover;
+      }
+
+      .front {
+        background-attachment: scroll;
+        background-size: cover;
+      }
+    }
+  </style>
+  <div class="card">
+    <div class="outside">
+      <div class="front">
+        <div class="hiee">
+          <p1>halowww cantikk !!</p1>
+        </div>
+        <div class="front-sticker">
+          <img src="src\assets\front-stk.webp" alt="Hiee Pumpkin !!">
+        </div>
+      </div>
+      <div class="back">
+        <div class="back-sticker">
+          <img src="src\assets\back.webp" alt="Phool !!">
+        </div>
+      </div>
+    </div>
+    <div class="inside">
+      <div class="Text">
+        <p>besok mw date diruma ak? hihi</p>
+      </div>
+      <div class="main-sticker">
+        <img src="src\assets\main-stk.webp" alt="Wanna Date?">
+      </div>
+      <div class="buttons">
+        <button class="btn" id="yesButton" onclick="nextPage('yes')">iyah</button>
+        <button class="btn" id="noButton" type="button">gmw</button>
+        <script>
+          function nextPage(choice) {
+            if (choice === 'yes') {
+              window.location.href = "src/yes.html";
+            }
+          }
+
+          function moveNoButton() {
+            const inside = document.querySelector('.inside');
+            const noButton = document.getElementById('noButton');
+
+            if (!inside || !noButton) {
+              return;
+            }
+
+            const insideRect = inside.getBoundingClientRect();
+            const buttonRect = noButton.getBoundingClientRect();
+            const padding = 16;
+            const maxX = Math.max(padding, insideRect.width - buttonRect.width - padding);
+            const maxY = Math.max(padding, insideRect.height - buttonRect.height - padding);
+
+            noButton.style.marginLeft = '0';
+            noButton.style.marginTop = '0';
+            noButton.style.left = `${Math.random() * maxX}px`;
+            noButton.style.top = `${Math.random() * maxY}px`;
+          }
+
+          const noButton = document.getElementById('noButton');
+
+          noButton.addEventListener('pointerenter', moveNoButton);
+          noButton.addEventListener('pointerdown', function (event) {
+            event.preventDefault();
+            moveNoButton();
+          });
+          noButton.addEventListener('mousemove', moveNoButton);
+          noButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            moveNoButton();
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
